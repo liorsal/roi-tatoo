@@ -79,9 +79,20 @@
             </div>
         </footer>
     </div>
-    <!-- חייב לפני ה-script מה-CDN -->
+    <!-- מיכל לוידג'ט (חובה!) -->
+    <div id="lior-acc-root" data-position="right" data-declaration="/accessibility"></div>
+    
+    <!-- קונפיג גלובלי שהווידג'ט מצפה לו -->
     <script>
-        // ודא שיש labels גלובלי גם כ-window וגם כ-var
+        window.liorAcc = window.liorAcc || {};
+        window.liorAcc.settings = window.liorAcc.settings || {
+            position: 'right',          // 'right' | 'left'
+            declaration: '/accessibility',
+            fontUrl: '',                 // אופציונלי
+            lang: 'he'                   // he | en ...
+        };
+
+        // אם יש תלות ב-labels:
         window.labels = window.labels || {
             incText: "הגדלת טקסט",
             spacing: "ריווח טקסט",
@@ -101,12 +112,12 @@
             cognitiveProfile: "פרופיל קוגניטיבי",
             reset: "איפוס הגדרות"
         };
-        // חלק מהקוד מצפה ל-var גלובלי בשם labels
         var labels = window.labels;
     </script>
-    <!-- הווידג'ט מה-GitHub עם גיבוי + עקיפת קאש -->
-    <script src="https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1"
-            onerror="this.onerror=null;this.src='https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js';">
+    
+    <!-- טעינת הווידג'ט מה-GitHub -->
+    <script src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731361800"
+            onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731361800';">
     </script>
 </body>
 </html>
