@@ -79,9 +79,10 @@
             </div>
         </footer>
     </div>
+    <!-- חייב לפני ה-script מה-CDN -->
     <script>
-        // מוסיף זמנית את האובייקט labels כדי לבדוק שהכפתור מה-CDN עובד
-        const labels = {
+        // ודא שיש labels גלובלי גם כ-window וגם כ-var
+        window.labels = window.labels || {
             incText: "הגדלת טקסט",
             spacing: "ריווח טקסט",
             highContrast: "ניגודיות גבוהה",
@@ -98,10 +99,15 @@
             visionProfile: "פרופיל כבדי ראייה",
             dyslexiaProfile: "פרופיל דיסלקציה",
             cognitiveProfile: "פרופיל קוגניטיבי",
-            reset: "איפוס הגדרות",
+            reset: "איפוס הגדרות"
         };
+        // חלק מהקוד מצפה ל-var גלובלי בשם labels
+        var labels = window.labels;
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js"></script>
+    <!-- הווידג'ט מה-GitHub עם גיבוי + עקיפת קאש -->
+    <script src="https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1"
+            onerror="this.onerror=null;this.src='https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js';">
+    </script>
 </body>
 </html>
 
