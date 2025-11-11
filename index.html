@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roí Zeev - Tatoo Artist</title>
     <link rel="stylesheet" href="style.css">
+    <!-- השתקת ה־404 של favicon (אופציונלי) -->
+    <link rel="icon" href="data:,">
 </head>
 <body>
     <div class="container">
@@ -79,20 +81,13 @@
             </div>
         </footer>
     </div>
-    <!-- מיכל לוידג'ט (חובה!) -->
-    <div id="lior-acc-root" data-position="right" data-declaration="/accessibility"></div>
-    
-    <!-- קונפיג גלובלי שהווידג'ט מצפה לו -->
-    <script>
-        window.liorAcc = window.liorAcc || {};
-        window.liorAcc.settings = window.liorAcc.settings || {
-            position: 'right',          // 'right' | 'left'
-            declaration: '/accessibility',
-            fontUrl: '',                 // אופציונלי
-            lang: 'he'                   // he | en ...
-        };
+    <!-- 1) אלמנט עוגן שחובה שיהיה -->
+    <div id="lior-acc-root"
+         data-position="right"
+         data-declaration="/accessibility"></div>
 
-        // אם יש תלות ב-labels:
+    <!-- 2) טקסטים גלובליים (בלי var נוסף) -->
+    <script>
         window.labels = {
             incText: "הגדלת טקסט",
             spacing: "ריווח טקסט",
@@ -113,10 +108,11 @@
             reset: "איפוס הגדרות"
         };
     </script>
-    
-    <!-- טעינת הווידג'ט מה-GitHub -->
-    <script src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731361800"
-            onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731361800';">
+
+    <!-- 3) טעינת הווידג'ט – קודם GitHack (טרי), גיבוי jsDelivr, ושבירת קאש -->
+    <script defer
+            src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731362400"
+            onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731362400';">
     </script>
 </body>
 </html>
