@@ -81,55 +81,7 @@
             </div>
         </footer>
     </div>
-    <!-- 1) עוגן + שלד אלמנטים שהווידג'ט מצפה להם -->
-    <div id="lior-acc-root" data-position="right" data-declaration="/accessibility">
-        <div id="lior-acc-live-region" class="lior-acc-sr-only" aria-live="polite" aria-atomic="true"></div>
-
-        <button id="lior-acc-button" type="button"
-                aria-haspopup="dialog" aria-controls="lior-acc-panel"
-                aria-expanded="false" aria-label="פתח תפריט נגישות">
-            <span aria-hidden="true">♿</span>
-        </button>
-
-        <div id="lior-acc-overlay" hidden></div>
-
-        <div id="lior-acc-panel" role="dialog" aria-modal="true"
-             aria-labelledby="lior-acc-title" hidden>
-            <div class="lior-acc-panel-header">
-                <h2 id="lior-acc-title">תפריט נגישות</h2>
-                <button id="lior-acc-close" type="button" aria-label="סגור">×</button>
-            </div>
-            <div class="lior-acc-panel-body"></div> <!-- הווידג'ט ימלא/יקשר -->
-        </div>
-    </div>
-
-    <!-- 2) labels גלובלי (אם הווידג'ט משתמש בזה) -->
-    <script>
-        window.labels = {
-            incText: "הגדלת טקסט",
-            spacing: "ריווח טקסט",
-            highContrast: "ניגודיות גבוהה",
-            darkContrast: "ניגודיות כהה",
-            grayscale: "גווני אפור",
-            invert: "היפוך צבעים",
-            underlineLinks: "קו תחתון לקישורים",
-            highlightLinks: "הדגשת קישורים",
-            dyslexia: "גופן נגיש (דיסלקסיה)",
-            bigCursor: "סמן עכבר גדול",
-            noAnim: "ביטול אנימציות",
-            focusMode: "פוקוס קריאה",
-            readAloud: "קריאה בקול",
-            visionProfile: "פרופיל כבדי ראייה",
-            dyslexiaProfile: "פרופיל דיסלקציה",
-            cognitiveProfile: "פרופיל קוגניטיבי",
-            reset: "איפוס הגדרות"
-        };
-    </script>
-
-    <!-- 3) הווידג'ט מה-GitHub -->
-    <script src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731363000"
-            onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731363000';">
-    </script>
+    <script src="https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js"></script>
 </body>
 </html>
 
