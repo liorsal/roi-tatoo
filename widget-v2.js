@@ -171,8 +171,8 @@ const labels = {
   --lior-acc-shadow: 0 10px 25px rgba(0,0,0,.15);
   --lior-acc-accent: #0066cc;
   --lior-acc-overlay: rgba(0,0,0,.5);
-  --lior-acc-size: 78px;
-  --lior-acc-panel-width: 320px;
+  --lior-acc-size: 70px;
+  --lior-acc-panel-width: 400px;
   --lior-acc-focus-width: 3px;
   --lior-acc-focus-offset: 2px;
   --acc-fg: #111;
@@ -326,7 +326,7 @@ a {
   cursor: pointer;
   display: grid;
   place-items: center;
-  font-size: 28px;
+  font-size: 36px;
   padding: 0;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -445,11 +445,11 @@ body *:not(.lior-acc-root):not(.lior-acc-root *):not(.lior-acc-modal):not(.lior-
     transform: translateY(0);
   }
 }
-.lior-acc-panel-header h2 { font-size: 20px; margin: 0; font-weight: 700; color: #000000 !important; }
+.lior-acc-panel-header h2 { font-size: 24px; margin: 0; font-weight: 700; color: #000000 !important; }
 .lior-acc-close {
     border: 0;
     background: transparent;
-    font-size: 32px;
+    font-size: 36px;
     line-height: 1;
     cursor: pointer;
     font-weight: 300;
@@ -492,13 +492,13 @@ body *:not(.lior-acc-root):not(.lior-acc-root *):not(.lior-acc-modal):not(.lior-
 .lior-acc-toggle {
   width: 100%;
   text-align: right;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 8px;
   border: 2px solid var(--lior-acc-border);
   background: #ffffff !important;
   cursor: pointer;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #000000 !important;
   transition: all 0.2s ease;
 }
@@ -567,9 +567,9 @@ body *:not(.lior-acc-root):not(.lior-acc-root *):not(.lior-acc-modal):not(.lior-
     right: auto;
   }
   .lior-acc-button {
-    font-size: 22px;
-    width: 44px;
-    height: 44px;
+    font-size: 28px;
+    width: 56px;
+    height: 56px;
   }
   .lior-acc-panel-header h2 {
     font-size: 16px !important;
