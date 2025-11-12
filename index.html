@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roí Zeev - Tattoo Artist</title>
   <link rel="stylesheet" href="style.css"/>
+  <!-- השתקת favicon -->
   <link rel="icon" href="data:,">
 </head>
 <body>
@@ -61,10 +62,9 @@
     </footer>
   </div>
 
-  <!-- === BOOTSTRAP לפני טעינת הסקריפט החיצוני === -->
+  <!-- ===== תוסף הנגישות ===== -->
   <script>
-  (function(){
-    // 1) labels ברירת מחדל (אם לא הוגדרו)
+    // Labels ברירת מחדל
     window.labels = window.labels || {
       incText:"הגדלת טקסט", spacing:"ריווח טקסט",
       highContrast:"ניגודיות גבוהה", darkContrast:"ניגודיות כהה",
@@ -77,78 +77,35 @@
       reset:"איפוס הגדרות"
     };
 
-    // 2) הגדרות ברירת מחדל
+    // הגדרות כלליות של התוסף
     window.liorAcc = window.liorAcc || {};
     window.liorAcc.settings = Object.assign({
       position: 'right',
       declaration: '/accessibility',
-      lang: (document.documentElement && document.documentElement.lang) || 'he',
+      lang: document.documentElement.lang || 'he',
       fontUrl: ''
     }, window.liorAcc.settings || {});
 
-    // 3) יצירת שלד האלמנטים שהסקריפט מה-GitHub מצפה להם
-    var d = document;
-    var root = d.getElementById('lior-acc-root');
-    if (!root) {
-      root = d.createElement('div');
-      root.id = 'lior-acc-root';
-      d.body.appendChild(root);
-    }
-    if (!d.getElementById('lior-acc-live-region')) {
-      var live = d.createElement('div');
-      live.id = 'lior-acc-live-region';
-      live.setAttribute('aria-live','polite');
-      live.setAttribute('aria-atomic','true');
-      live.className = 'lior-acc-sr-only';
-      root.appendChild(live);
-    }
-    if (!d.getElementById('lior-acc-button')) {
-      var btn = d.createElement('button');
-      btn.id = 'lior-acc-button';
-      btn.type = 'button';
-      btn.setAttribute('aria-haspopup','dialog');
-      btn.setAttribute('aria-controls','lior-acc-panel');
-      btn.setAttribute('aria-expanded','false');
-      btn.setAttribute('aria-label','פתח תפריט נגישות');
-      btn.innerHTML = '<span aria-hidden="true">♿</span>';
-      root.appendChild(btn);
-    }
-    if (!d.getElementById('lior-acc-overlay')) {
-      var overlay = d.createElement('div');
-      overlay.id = 'lior-acc-overlay';
-      overlay.hidden = true;
-      root.appendChild(overlay);
-    }
-    if (!d.getElementById('lior-acc-panel')) {
-      var panel = d.createElement('div');
-      panel.id = 'lior-acc-panel';
-      panel.setAttribute('role','dialog');
-      panel.setAttribute('aria-modal','true');
-      panel.setAttribute('aria-labelledby','lior-acc-title');
-      panel.hidden = true;
-      panel.innerHTML =
-        '<div class="lior-acc-panel-header">' +
-          '<h2 id="lior-acc-title">תפריט נגישות</h2>' +
-          '<button id="lior-acc-close" type="button" aria-label="סגור">×</button>' +
-        '</div>' +
-        '<div class="lior-acc-panel-body"></div>';
-      root.appendChild(panel);
+    // נוודא שקיים גם משתנה גלובלי בשם liorAcc (כי הסקריפט ניגש אליו ישירות)
+    if (typeof liorAcc === 'undefined') {
+      var liorAcc = window.liorAcc;
     }
 
-    // 4) טעינת הסקריפט מהריפו (עם גיבוי)
-    function load(src, onerr){
-      var s = d.createElement('script');
-      s.defer = true;
-      s.src = src;
-      if (onerr) s.onerror = function(){ this.onerror=null; load(onerr); };
-      d.body.appendChild(s);
-    }
-    load(
-      'https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731372600',
-      'https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731372600'
-    );
-  })();
+    // ניצור מראש root שאליו הסקריפט יוכל להתחבר
+    document.addEventListener("DOMContentLoaded", function() {
+      if (!document.getElementById('lior-acc-root')) {
+        const root = document.createElement('div');
+        root.id = 'lior-acc-root';
+        document.body.appendChild(root);
+      }
+    });
   </script>
-  <!-- === סוף BOOTSTRAP === -->
+
+  <!-- טעינת הקובץ מה-GitHub (עם גיבוי ל-jsDelivr ושבירת קאש) -->
+  <script defer
+    src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731374000"
+    onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731374000';">
+  </script>
+
 </body>
 </html>
