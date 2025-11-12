@@ -62,7 +62,7 @@
     </footer>
   </div>
 
-  <!-- ===== תוסף הנגישות ===== -->
+  <!-- ===== תוסף הנגישות (shims + טעינה מ-Pages עם פולבאק) ===== -->
   <script>
     // Labels ברירת מחדל
     window.labels = window.labels || {
@@ -86,12 +86,10 @@
       fontUrl: ''
     }, window.liorAcc.settings || {});
 
-    // נוודא שקיים גם משתנה גלובלי בשם liorAcc (כי הסקריפט ניגש אליו ישירות)
-    if (typeof liorAcc === 'undefined') {
-      var liorAcc = window.liorAcc;
-    }
+    // binding גלובלי אם הסקריפט פונה ל-liorAcc בלי window.
+    if (typeof liorAcc === 'undefined') { var liorAcc = window.liorAcc; }
 
-    // ניצור מראש root שאליו הסקריפט יוכל להתחבר
+    // עוגן מינימלי (אם הווידג'ט מצפה לרכיב קיים)
     document.addEventListener("DOMContentLoaded", function() {
       if (!document.getElementById('lior-acc-root')) {
         const root = document.createElement('div');
@@ -99,13 +97,24 @@
         document.body.appendChild(root);
       }
     });
-  </script>
 
-  <!-- טעינת הקובץ מה-GitHub (עם גיבוי ל-jsDelivr ושבירת קאש) -->
-  <script defer
-    src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731374000"
-    onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731374000';">
+    // טען בסדר עדיפויות: GitHub Pages → jsDelivr → GitHack (עם שבירת קאש)
+    (function loadWidget(){
+      const ts = Date.now(); // לשבור קאש כשהקובץ מתעדכן
+      const candidates = [
+        `https://liorsal.github.io/negi-vs/widget-v2.js?ts=${ts}`,
+        `https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=${ts}`,
+        `https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=${ts}`
+      ];
+      (function tryNext(i){
+        if (i >= candidates.length) return;
+        const s = document.createElement('script');
+        s.defer = true;
+        s.src = candidates[i];
+        s.onerror = () => { s.remove(); tryNext(i+1); };
+        document.body.appendChild(s);
+      })(0);
+    })();
   </script>
-
 </body>
 </html>
