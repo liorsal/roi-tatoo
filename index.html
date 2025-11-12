@@ -1,107 +1,168 @@
-<!-- ===== BOOTSTRAP לנגישות: יוצר שלד, קונפיג, ואז טוען את הווידג'ט ===== -->
-<script>
-(function () {
-  // 1) labels ברירת מחדל (לא "var"/"const" כדי לא להתנגש)
-  window.labels = window.labels || {
-    incText:"הגדלת טקסט", spacing:"ריווח טקסט",
-    highContrast:"ניגודיות גבוהה", darkContrast:"ניגודיות כהה",
-    grayscale:"גווני אפור", invert:"היפוך צבעים",
-    underlineLinks:"קו תחתון לקישורים", highlightLinks:"הדגשת קישורים",
-    dyslexia:"גופן נגיש (דיסלקסיה)", bigCursor:"סמן עכבר גדול",
-    noAnim:"ביטול אנימציות", focusMode:"פוקוס קריאה",
-    readAloud:"קריאה בקול", visionProfile:"פרופיל כבדי ראייה",
-    dyslexiaProfile:"פרופיל דיסלקציה", cognitiveProfile:"פרופיל קוגניטיבי",
-    reset:"איפוס הגדרות"
-  };
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roí Zeev - Tattoo Artist</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="header-left" dir="ltr">
+          <h1 class="artist-name">Roí Zeev</h1>
+          <p class="profession">Tattoo Artist</p>
+          <p class="contact-inline">0526870078 — הרצליה · קריית שמונה</p>
+        </div>
+        <div class="header-right">
+          <div class="decorative-card">
+            <img src="images/8beb2733-4aea-41ea-a143-33248363367a.JPG" alt="Decorative room image">
+            <button class="nav-fab" aria-label="Next image">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  // 2) הגדרות ברירת מחדל + shim ל-liorAcc (יש קוד שפונה בלי window.)
-  window.liorAcc = window.liorAcc || {};
-  window.liorAcc.settings = Object.assign({
-    position: 'right',
-    declaration: '/accessibility',
-    lang: (document.documentElement && document.documentElement.lang) || 'he',
-    fontUrl: ''
-  }, window.liorAcc.settings || {});
-  if (typeof liorAcc === 'undefined') { var liorAcc = window.liorAcc; }
+    <!-- Designs -->
+    <section class="designs-section">
+      <div class="designs-grid">
+        <div class="design-item large paper"><img src="images/25c8b6f8-455b-4f80-b315-66ce17e3bfe4.JPG" alt="Dragon with head design"></div>
+        <div class="design-item large paper"><img src="images/2d5e09aa-a0a8-4755-b51a-6eb93a2b852c.JPG" alt="Dragon S-shape design"></div>
+        <div class="design-item small paper"><img src="images/32abcea8-8b18-463f-9dc8-e4880a6689ab.JPG" alt="Sea turtle design"></div>
+        <div class="design-item small paper"><img src="images/6fca3222-e63c-4803-a135-cf452fa0f47a.JPG" alt="Lioness design"></div>
+        <div class="design-item small paper"><img src="images/7967c992-6279-4946-a5cf-913f5ff2a014.JPG" alt="Hiking boot design"></div>
+        <div class="design-item small paper"><img src="images/9ca89574-8ed0-4c40-9f86-908ccccb37ce.JPG" alt="Conch shell design"></div>
+      </div>
+    </section>
 
-  // 3) יצירת כל האלמנטים שהווידג'ט מצפה להם
-  var d = document;
-  var root = d.getElementById('lior-acc-root');
-  if (!root) {
-    root = d.createElement('div');
-    root.id = 'lior-acc-root';
-    root.className = 'lior-acc-root lior-acc-pos-right';
-    root.setAttribute('aria-live','polite');
-    d.body.appendChild(root);
-  }
+    <!-- Tattoos -->
+    <section class="tattoos-section">
+      <div class="tattoos-grid">
+        <div class="tattoo-item"><img src="images/2b12088e-5b04-46dc-924f-211b43f73df4.JPG" alt="Moomins tattoo on forearm"></div>
+        <div class="tattoo-item"><img src="images/f172c294-7ba5-49da-88fe-3e4a782c94e7.JPG" alt="Paw print tattoo on leg"></div>
+        <div class="tattoo-item"><img src="images/dd8dd41b-1e34-4551-b806-757e1d01083f.JPG" alt="Dog high-five tattoo on forearm"></div>
+        <div class="tattoo-item"><img src="images/f4a30ba8-ab5e-4035-8240-d442b8295d6a.JPG" alt="Frog tattoo on ankle"></div>
+      </div>
+    </section>
 
-  if (!d.getElementById('lior-acc-live-region')) {
-    var live = d.createElement('div');
-    live.id = 'lior-acc-live-region';
-    live.className = 'lior-acc-sr-only';
-    live.setAttribute('aria-live','polite');
-    live.setAttribute('aria-atomic','true');
-    root.appendChild(live);
-  }
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="social-links">
+        <a href="#" class="social-link">וואטסאפ</a>
+        <a href="#" class="social-link">אינסטגרם</a>
+      </div>
+    </footer>
+  </div>
 
-  if (!d.getElementById('lior-acc-button')) {
-    var btn = d.createElement('button');
-    btn.id = 'lior-acc-button';
-    btn.className = 'lior-acc-button';
-    btn.type = 'button';
-    btn.setAttribute('aria-haspopup','dialog');
-    btn.setAttribute('aria-controls','lior-acc-panel');
-    btn.setAttribute('aria-expanded','false');
-    btn.setAttribute('aria-label','פתח תפריט נגישות');
-    btn.innerHTML = '<span aria-hidden="true">♿</span>';
-    root.appendChild(btn);
-  }
+  <!-- ===== תוסף הנגישות (Bootstrap מלא) ===== -->
+  <script>
+  (function () {
+    // --- 1. labels ---
+    window.labels = window.labels || {
+      incText:"הגדלת טקסט", spacing:"ריווח טקסט",
+      highContrast:"ניגודיות גבוהה", darkContrast:"ניגודיות כהה",
+      grayscale:"גווני אפור", invert:"היפוך צבעים",
+      underlineLinks:"קו תחתון לקישורים", highlightLinks:"הדגשת קישורים",
+      dyslexia:"גופן נגיש (דיסלקסיה)", bigCursor:"סמן עכבר גדול",
+      noAnim:"ביטול אנימציות", focusMode:"פוקוס קריאה",
+      readAloud:"קריאה בקול", visionProfile:"פרופיל כבדי ראייה",
+      dyslexiaProfile:"פרופיל דיסלקציה", cognitiveProfile:"פרופיל קוגניטיבי",
+      reset:"איפוס הגדרות"
+    };
 
-  if (!d.getElementById('lior-acc-overlay')) {
-    var overlay = d.createElement('div');
-    overlay.id = 'lior-acc-overlay';
-    overlay.className = 'lior-acc-overlay';
-    overlay.hidden = true;
-    root.appendChild(overlay);
-  }
+    // --- 2. הגדרות כלליות ---
+    window.liorAcc = window.liorAcc || {};
+    window.liorAcc.settings = Object.assign({
+      position: 'right',
+      declaration: '/accessibility',
+      lang: document.documentElement.lang || 'he',
+      fontUrl: ''
+    }, window.liorAcc.settings || {});
+    if (typeof liorAcc === 'undefined') var liorAcc = window.liorAcc;
 
-  if (!d.getElementById('lior-acc-panel')) {
-    var panel = d.createElement('div');
-    panel.id = 'lior-acc-panel';
-    panel.className = 'lior-acc-panel';
-    panel.setAttribute('role','dialog');
-    panel.setAttribute('aria-modal','true');
-    panel.setAttribute('aria-labelledby','lior-acc-title');
-    panel.hidden = true;
+    // --- 3. יצירת אלמנטים חסרים ---
+    const d = document;
+    const root = d.getElementById('lior-acc-root') || (() => {
+      const r = d.createElement('div');
+      r.id = 'lior-acc-root';
+      r.className = 'lior-acc-root lior-acc-pos-right';
+      r.setAttribute('aria-live', 'polite');
+      d.body.appendChild(r);
+      return r;
+    })();
 
-    panel.innerHTML =
-      '<div class="lior-acc-panel-header">' +
-        '<h2 id="lior-acc-title">תפריט נגישות</h2>' +
-        '<button id="lior-acc-close" class="lior-acc-close" type="button" aria-label="סגור">×</button>' +
-      '</div>' +
-      '<div class="lior-acc-panel-body">' +
-        '<ul class="lior-acc-list" role="list"></ul>' +
-        '<button id="lior-acc-reset" class="lior-acc-reset" type="button">איפוס הגדרות</button>' +
-      '</div>';
-
-    root.appendChild(panel);
-  }
-
-  // 4) טען את הסקריפט: GitHub Pages → jsDelivr → GitHack (עם שבירת קאש)
-  function load(src, fallback) {
-    var s = d.createElement('script');
-    s.defer = true;
-    s.src = src;
-    if (fallback) {
-      s.onerror = function(){ this.onerror=null; this.remove(); load(fallback); };
+    if (!d.getElementById('lior-acc-live-region')) {
+      const live = d.createElement('div');
+      live.id = 'lior-acc-live-region';
+      live.className = 'lior-acc-sr-only';
+      live.setAttribute('aria-live', 'polite');
+      live.setAttribute('aria-atomic', 'true');
+      root.appendChild(live);
     }
-    d.body.appendChild(s);
-  }
-  var ts = Date.now();
-  load(
-    'https://liorsal.github.io/negi-vs/widget-v2.js?ts=' + ts,
-    'https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=' + ts
-  );
-})();
-</script>
-<!-- ===== סוף BOOTSTRAP ===== -->
+
+    if (!d.getElementById('lior-acc-button')) {
+      const btn = d.createElement('button');
+      btn.id = 'lior-acc-button';
+      btn.className = 'lior-acc-button';
+      btn.type = 'button';
+      btn.setAttribute('aria-haspopup','dialog');
+      btn.setAttribute('aria-controls','lior-acc-panel');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label','פתח תפריט נגישות');
+      btn.innerHTML = '<span aria-hidden="true">♿</span>';
+      root.appendChild(btn);
+    }
+
+    if (!d.getElementById('lior-acc-overlay')) {
+      const overlay = d.createElement('div');
+      overlay.id = 'lior-acc-overlay';
+      overlay.className = 'lior-acc-overlay';
+      overlay.hidden = true;
+      root.appendChild(overlay);
+    }
+
+    if (!d.getElementById('lior-acc-panel')) {
+      const panel = d.createElement('div');
+      panel.id = 'lior-acc-panel';
+      panel.className = 'lior-acc-panel';
+      panel.setAttribute('role','dialog');
+      panel.setAttribute('aria-modal','true');
+      panel.setAttribute('aria-labelledby','lior-acc-title');
+      panel.hidden = true;
+      panel.innerHTML =
+        '<div class="lior-acc-panel-header">' +
+          '<h2 id="lior-acc-title">תפריט נגישות</h2>' +
+          '<button id="lior-acc-close" class="lior-acc-close" type="button" aria-label="סגור">×</button>' +
+        '</div>' +
+        '<div class="lior-acc-panel-body">' +
+          '<ul class="lior-acc-list" role="list"></ul>' +
+          '<button id="lior-acc-reset" class="lior-acc-reset" type="button">איפוס הגדרות</button>' +
+        '</div>';
+      root.appendChild(panel);
+    }
+
+    // --- 4. טעינה מה-GitHub Pages עם fallback ---
+    function load(src, fallback) {
+      const s = d.createElement('script');
+      s.defer = true;
+      s.src = src;
+      if (fallback) s.onerror = function(){ this.remove(); load(fallback); };
+      d.body.appendChild(s);
+    }
+    const ts = Date.now();
+    load(
+      'https://liorsal.github.io/negi-vs/widget-v2.js?ts=' + ts,
+      'https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=' + ts
+    );
+  })();
+  </script>
+  <!-- ===== סוף תוסף נגישות ===== -->
+</body>
+</html>
