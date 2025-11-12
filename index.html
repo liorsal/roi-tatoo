@@ -61,10 +61,9 @@
     </footer>
   </div>
 
-  <!-- ===== תוסף הנגישות (Bootstrap מלא) ===== -->
+  <!-- ===== Lior Accessibility – minimal bootstrap (Pages + fallbacks) ===== -->
   <script>
-  (function () {
-    // --- 1. labels ---
+    // 1) תוויות (אם הסקריפט מצפה להן)
     window.labels = window.labels || {
       incText:"הגדלת טקסט", spacing:"ריווח טקסט",
       highContrast:"ניגודיות גבוהה", darkContrast:"ניגודיות כהה",
@@ -77,92 +76,43 @@
       reset:"איפוס הגדרות"
     };
 
-    // --- 2. הגדרות כלליות ---
+    // 2) הגדרות הווידג'ט + לוגו
     window.liorAcc = window.liorAcc || {};
     window.liorAcc.settings = Object.assign({
       position: 'right',
       declaration: '/accessibility',
       lang: document.documentElement.lang || 'he',
-      fontUrl: ''
+      logoUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-Z5pQb64527QqrgGwIDqkDyFB7uVs96.jpeg'
     }, window.liorAcc.settings || {});
-    if (typeof liorAcc === 'undefined') var liorAcc = window.liorAcc;
+    if (typeof liorAcc === 'undefined') { var liorAcc = window.liorAcc; }
 
-    // --- 3. יצירת אלמנטים חסרים ---
-    const d = document;
-    const root = d.getElementById('lior-acc-root') || (() => {
-      const r = d.createElement('div');
-      r.id = 'lior-acc-root';
-      r.className = 'lior-acc-root lior-acc-pos-right';
-      r.setAttribute('aria-live', 'polite');
-      d.body.appendChild(r);
-      return r;
+    // 3) צור רק root. שאר האלמנטים יבנה הסקריפט
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.getElementById('lior-acc-root')) {
+        const root = document.createElement('div');
+        root.id = 'lior-acc-root';
+        document.body.appendChild(root);
+      }
+    });
+
+    // 4) טען מ-Pages עם פולבאק ו"שבירת קאש"
+    (function loadWidget(){
+      const ts = Date.now();
+      const urls = [
+        `https://liorsal.github.io/negi-vs/widget-v2.js?ts=${ts}`,
+        `https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=${ts}`,
+        `https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=${ts}`
+      ];
+      (function tryNext(i){
+        if (i >= urls.length) return;
+        const s = document.createElement('script');
+        s.defer = true;
+        s.src = urls[i];
+        s.onerror = () => { s.remove(); tryNext(i+1); };
+        document.body.appendChild(s);
+      })(0);
     })();
-
-    if (!d.getElementById('lior-acc-live-region')) {
-      const live = d.createElement('div');
-      live.id = 'lior-acc-live-region';
-      live.className = 'lior-acc-sr-only';
-      live.setAttribute('aria-live', 'polite');
-      live.setAttribute('aria-atomic', 'true');
-      root.appendChild(live);
-    }
-
-    if (!d.getElementById('lior-acc-button')) {
-      const btn = d.createElement('button');
-      btn.id = 'lior-acc-button';
-      btn.className = 'lior-acc-button';
-      btn.type = 'button';
-      btn.setAttribute('aria-haspopup','dialog');
-      btn.setAttribute('aria-controls','lior-acc-panel');
-      btn.setAttribute('aria-expanded','false');
-      btn.setAttribute('aria-label','פתח תפריט נגישות');
-      btn.innerHTML = '<span aria-hidden="true">♿</span>';
-      root.appendChild(btn);
-    }
-
-    if (!d.getElementById('lior-acc-overlay')) {
-      const overlay = d.createElement('div');
-      overlay.id = 'lior-acc-overlay';
-      overlay.className = 'lior-acc-overlay';
-      overlay.hidden = true;
-      root.appendChild(overlay);
-    }
-
-    if (!d.getElementById('lior-acc-panel')) {
-      const panel = d.createElement('div');
-      panel.id = 'lior-acc-panel';
-      panel.className = 'lior-acc-panel';
-      panel.setAttribute('role','dialog');
-      panel.setAttribute('aria-modal','true');
-      panel.setAttribute('aria-labelledby','lior-acc-title');
-      panel.hidden = true;
-      panel.innerHTML =
-        '<div class="lior-acc-panel-header">' +
-          '<h2 id="lior-acc-title">תפריט נגישות</h2>' +
-          '<button id="lior-acc-close" class="lior-acc-close" type="button" aria-label="סגור">×</button>' +
-        '</div>' +
-        '<div class="lior-acc-panel-body">' +
-          '<ul class="lior-acc-list" role="list"></ul>' +
-          '<button id="lior-acc-reset" class="lior-acc-reset" type="button">איפוס הגדרות</button>' +
-        '</div>';
-      root.appendChild(panel);
-    }
-
-    // --- 4. טעינה מה-GitHub Pages עם fallback ---
-    function load(src, fallback) {
-      const s = d.createElement('script');
-      s.defer = true;
-      s.src = src;
-      if (fallback) s.onerror = function(){ this.remove(); load(fallback); };
-      d.body.appendChild(s);
-    }
-    const ts = Date.now();
-    load(
-      'https://liorsal.github.io/negi-vs/widget-v2.js?ts=' + ts,
-      'https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=' + ts
-    );
-  })();
   </script>
-  <!-- ===== סוף תוסף נגישות ===== -->
+  <!-- ===== end ===== -->
 </body>
 </html>
