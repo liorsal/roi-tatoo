@@ -1,69 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Roí Zeev - Tattoo Artist</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo - Lior Accessibility</title>
+  <style>
+    main { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    nav a { margin-inline: .5rem; }
+    .box { padding: 1rem; border:1px solid #ddd; border-radius: 8px; }
+    .lior-acc-skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .lior-acc-skip:focus { left:1rem; top:1rem; width:auto; height:auto; background:#000; color:#fff; padding:.5rem .75rem; border-radius:.5rem; z-index:10000; }
+  </style>
   <link rel="icon" href="data:,">
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="header-content">
-        <div class="header-left" dir="ltr">
-          <h1 class="artist-name">Roí Zeev</h1>
-          <p class="profession">Tattoo Artist</p>
-          <p class="contact-inline">0526870078 — הרצליה · קריית שמונה</p>
-        </div>
-        <div class="header-right">
-          <div class="decorative-card">
-            <img src="images/8beb2733-4aea-41ea-a143-33248363367a.JPG" alt="Decorative room image">
-            <button class="nav-fab" aria-label="Next image">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
+  <a class="lior-acc-skip" href="#main-content">דלג לתוכן</a>
 
-    <!-- Designs -->
-    <section class="designs-section">
-      <div class="designs-grid">
-        <div class="design-item large paper"><img src="images/25c8b6f8-455b-4f80-b315-66ce17e3bfe4.JPG" alt="Dragon with head design"></div>
-        <div class="design-item large paper"><img src="images/2d5e09aa-a0a8-4755-b51a-6eb93a2b852c.JPG" alt="Dragon S-shape design"></div>
-        <div class="design-item small paper"><img src="images/32abcea8-8b18-463f-9dc8-e4880a6689ab.JPG" alt="Sea turtle design"></div>
-        <div class="design-item small paper"><img src="images/6fca3222-e63c-4803-a135-cf452fa0f47a.JPG" alt="Lioness design"></div>
-        <div class="design-item small paper"><img src="images/7967c992-6279-4946-a5cf-913f5ff2a014.JPG" alt="Hiking boot design"></div>
-        <div class="design-item small paper"><img src="images/9ca89574-8ed0-4c40-9f86-908ccccb37ce.JPG" alt="Conch shell design"></div>
-      </div>
+  <nav>
+    <a href="#">קישור 1</a>
+    <a href="#">קישור 2</a>
+    <a href="#">קישור 3</a>
+  </nav>
+
+  <main id="main-content">
+    <h1>דמו נגישות</h1>
+    <p>טקסט לדוגמה עם <a href="#">קישור</a> ועוד קצת מלל כדי לראות הגדלת טקסט, ריווח, הדגשת קישורים ועוד.</p>
+    <div class="box">
+      <p>אנימציה לדוגמה:</p>
+      <div style="width:60px;height:60px;background:#0a7cff;animation:spin 3s linear infinite"></div>
+    </div>
+
+    <section aria-labelledby="accessibility-statement" style="margin-top: 3rem; padding: 1.5rem; border: 2px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+      <h2 id="accessibility-statement">הצהרת נגישות</h2>
+      <p>האתר מותאם לפי תקן <strong>IS 5568</strong> ו-<strong>WCAG 2.1 Level AA</strong>.</p>
+      <ul>
+        <li>הגדלת טקסט</li><li>ריווח טקסט</li><li>ניגודיות גבוהה/כהה</li>
+        <li>גווני אפור / היפוך צבעים</li><li>קו תחתון / הדגשת קישורים</li>
+        <li>גופן נגיש (דיסלקסיה)</li><li>סמן עכבר גדול</li><li>ביטול אנימציות</li>
+      </ul>
+      <p><strong>דיווח על בעיות נגישות:</strong> <a href="mailto:accessibility@example.com">accessibility@example.com</a></p>
+      <p><small>עודכן לאחרונה: 2025-11-08</small></p>
     </section>
+  </main>
 
-    <!-- Tattoos -->
-    <section class="tattoos-section">
-      <div class="tattoos-grid">
-        <div class="tattoo-item"><img src="images/2b12088e-5b04-46dc-924f-211b43f73df4.JPG" alt="Moomins tattoo on forearm"></div>
-        <div class="tattoo-item"><img src="images/f172c294-7ba5-49da-88fe-3e4a782c94e7.JPG" alt="Paw print tattoo on leg"></div>
-        <div class="tattoo-item"><img src="images/dd8dd41b-1e34-4551-b806-757e1d01083f.JPG" alt="Dog high-five tattoo on forearm"></div>
-        <div class="tattoo-item"><img src="images/f4a30ba8-ab5e-4035-8240-d442b8295d6a.JPG" alt="Frog tattoo on ankle"></div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="social-links">
-        <a href="#" class="social-link">וואטסאפ</a>
-        <a href="#" class="social-link">אינסטגרם</a>
-      </div>
-    </footer>
-  </div>
-
-  <!-- ===== Lior Accessibility – minimal bootstrap (Pages + fallbacks) ===== -->
+  <!-- keyframes לדמו -->
   <script>
-    // 1) תוויות (אם הסקריפט מצפה להן)
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+    document.head.appendChild(style);
+  </script>
+
+  <!-- SHIMS כדי למנוע שגיאות labels/settings גם אם ה-JS שלך מצפה אליהם -->
+  <script>
     window.labels = window.labels || {
       incText:"הגדלת טקסט", spacing:"ריווח טקסט",
       highContrast:"ניגודיות גבוהה", darkContrast:"ניגודיות כהה",
@@ -75,18 +63,15 @@
       dyslexiaProfile:"פרופיל דיסלקציה", cognitiveProfile:"פרופיל קוגניטיבי",
       reset:"איפוס הגדרות"
     };
-
-    // 2) הגדרות הווידג'ט + לוגו
     window.liorAcc = window.liorAcc || {};
     window.liorAcc.settings = Object.assign({
       position: 'right',
       declaration: '/accessibility',
-      lang: document.documentElement.lang || 'he',
-      logoUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-Z5pQb64527QqrgGwIDqkDyFB7uVs96.jpeg'
+      lang: (document.documentElement && document.documentElement.lang) || 'he',
+      fontUrl: ''
     }, window.liorAcc.settings || {});
     if (typeof liorAcc === 'undefined') { var liorAcc = window.liorAcc; }
-
-    // 3) צור רק root. שאר האלמנטים יבנה הסקריפט
+    // עוגן מינימלי, אם הסקריפט מחפש root קיים
     document.addEventListener('DOMContentLoaded', function () {
       if (!document.getElementById('lior-acc-root')) {
         const root = document.createElement('div');
@@ -94,25 +79,15 @@
         document.body.appendChild(root);
       }
     });
-
-    // 4) טען מ-Pages עם פולבאק ו"שבירת קאש"
-    (function loadWidget(){
-      const ts = Date.now();
-      const urls = [
-        `https://liorsal.github.io/negi-vs/widget-v2.js?ts=${ts}`,
-        `https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=${ts}`,
-        `https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=${ts}`
-      ];
-      (function tryNext(i){
-        if (i >= urls.length) return;
-        const s = document.createElement('script');
-        s.defer = true;
-        s.src = urls[i];
-        s.onerror = () => { s.remove(); tryNext(i+1); };
-        document.body.appendChild(s);
-      })(0);
-    })();
   </script>
-  <!-- ===== end ===== -->
+
+  <!-- טען את הסקריפט שלך מה-Pages: החלף את liorsal בשם המשתמש/ארגון שלך אם שונה -->
+  <script defer
+    src="https://liorsal.github.io/negi-vs/widget-v2.js"></script>
+
+  <!-- אופציונלי: טעינת גיבוי מ-CDN אם Pages לא זמין
+  <script defer
+    src="https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js"></script>
+  -->
 </body>
 </html>
