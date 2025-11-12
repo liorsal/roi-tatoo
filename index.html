@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roí Zeev - Tattoo Artist</title>
   <link rel="stylesheet" href="style.css"/>
+  <!-- השתקת 404 favicon -->
   <link rel="icon" href="data:,">
 </head>
 <body>
@@ -64,7 +65,7 @@
   <!-- (אופציונלי) עוגן — לא מזיק אם הווידג'ט כבר מזריק לבד -->
   <div id="lior-acc-root" hidden></div>
 
-  <!-- labels גלובלי (אם הווידג'ט שלך מצפה לזה) -->
+  <!-- labels גלובלי (אם הווידג'ט מצפה לזה) -->
   <script>
     window.labels = window.labels || {
       incText:"הגדלת טקסט", spacing:"ריווח טקסט",
@@ -90,8 +91,10 @@
     }, window.liorAcc.settings || {});
   </script>
 
-  <!-- טעינת הווידג'ט המקומי (דואג לזריקה עצמית) -->
-  <script defer src="widget-v2.js"
-          data-logo-url="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-Z5pQb64527QqrgGwIDqkDyFB7uVs96.jpeg"></script>
+  <!-- טעינת הווידג'ט מהריפו: קודם GitHack (עדכני), גיבוי jsDelivr + שבירת קאש -->
+  <script defer
+    src="https://rawcdn.githack.com/liorsal/negi-vs/main/widget-v2.js?ts=1731372000"
+    onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/liorsal/negi-vs@main/widget-v2.js?v=1731372000';">
+  </script>
 </body>
 </html>
